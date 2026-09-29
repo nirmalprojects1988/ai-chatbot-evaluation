@@ -6,7 +6,7 @@ A DeepEval example that sends a prompt to the RagForge chat API and evaluates th
 
 - Python 3.10 or newer
 - A Google Gemini API key
-- Network access to the RagForge API
+- Network access to the API
 
 ## Setup
 
