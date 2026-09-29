@@ -46,4 +46,3 @@ The script requests a chatbot response using the configured API endpoint, then e
 - `test_chatbot_evaluation.py` — chatbot API request and DeepEval evaluation example.
 - `gemini_deepeval.py` — Gemini-backed DeepEval model implementation.
 
-Local credentials, DeepEval data, virtual environments, and Python cache files are excluded by `.gitignore`.
