@@ -40,20 +40,42 @@ from gemini_deepeval import GeminiEvaluator
 
 
 # --------------------------------------------------
-# 1. RagForge API
+# 1. Chatbot API
 # --------------------------------------------------
 
-url = "https://api.ragforgeai.com/api/chat"
+url = os.getenv("CHATBOT_API_URL")
+origin = os.getenv("CHATBOT_ORIGIN")
+
+required_env_vars = {
+    "CHATBOT_API_URL": url,
+    "CHATBOT_ORIGIN": origin,
+    "BUSINESS_ID": os.getenv("BUSINESS_ID"),
+    "SESSION_ID": os.getenv("SESSION_ID"),
+    "VISITOR_ID": os.getenv("VISITOR_ID"),
+    "WIDGET_ID": os.getenv("WIDGET_ID"),
+}
+
+missing_vars = [
+    name
+    for name, value in required_env_vars.items()
+    if not value
+]
+
+if missing_vars:
+    raise RuntimeError(
+        f"Missing required environment variables: {', '.join(missing_vars)}"
+    )
+
 
 headers = {
     "Content-Type": "application/json",
-    "Origin": "https://www.ragforgeai.com",
+    "Origin": origin,
 }
 
-message = "What services does RagForge AI provide?"
+message = "What services does the chatbot provide?"
 
 payload = {
-   "business_id": os.getenv("BUSINESS_ID"),
+    "business_id": os.getenv("BUSINESS_ID"),
     "message": message,
     "session_id": os.getenv("SESSION_ID"),
     "visitor_id": os.getenv("VISITOR_ID"),
@@ -74,12 +96,12 @@ data = response.json()
 
 
 # --------------------------------------------------
-# 2. Get actual response from RagForge
+# 2. Get actual chatbot response
 # --------------------------------------------------
 
 actual_output = data["reply"]
 
-print("\nAgent Response:")
+print("\nChatbot Response:")
 print(actual_output)
 
 
@@ -106,7 +128,7 @@ gemini_evaluator = GeminiEvaluator(
 # 5. Metrics
 # --------------------------------------------------
 
-metric = TaskCompletionMetric(
+task_completion_metric = TaskCompletionMetric(
     threshold=0.4,
     model=gemini_evaluator,
 )
@@ -124,7 +146,7 @@ answer_relevancy_metric = AnswerRelevancyMetric(
 evaluate(
     test_cases=[test_case],
     metrics=[
-        metric,
+        task_completion_metric,
         answer_relevancy_metric,
     ],
 )
