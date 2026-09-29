@@ -1,6 +1,6 @@
 # AI Chatbot Evaluation
 
-A DeepEval example that sends a prompt to the RagForge chat API and evaluates the response with Gemini using task-completion and answer-relevancy metrics.
+A DeepEval example that sends a prompt to the chat API and evaluates the response with Gemini using task-completion and answer-relevancy metrics.
 
 ## Requirements
 
