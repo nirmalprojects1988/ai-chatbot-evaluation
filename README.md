@@ -21,21 +21,29 @@ A DeepEval example that sends a prompt to the chat API and evaluates the respons
 
    ```dotenv
    GOOGLE_API_KEY=your_google_api_key
+   CHATBOT_API_URL=https://your-chatbot-api.example.com/api/chat
+   CHATBOT_ORIGIN=https://your-chatbot.example.com
+   BUSINESS_ID=your_business_id
+   SESSION_ID=your_session_id
+   VISITOR_ID=your_visitor_id
+   WIDGET_ID=your_widget_id
    ```
+
+   Replace the example values with the credentials and endpoint for your chatbot.
 
 ## Run
 
 From this directory, run:
 
 ```sh
-python test_ragforge_agent.py
+python test_chatbot_evaluation.py
 ```
 
-The script requests a chatbot response from RagForge, then evaluates it with `TaskCompletionMetric` and `AnswerRelevancyMetric`.
+The script requests a chatbot response using the configured API endpoint, then evaluates it with `TaskCompletionMetric` and `AnswerRelevancyMetric`.
 
 ## Repository contents
 
-- `test_ragforge_agent.py` — RagForge request and DeepEval evaluation example.
+- `test_chatbot_evaluation.py` — chatbot API request and DeepEval evaluation example.
 - `gemini_deepeval.py` — Gemini-backed DeepEval model implementation.
 
 Local credentials, DeepEval data, virtual environments, and Python cache files are excluded by `.gitignore`.
