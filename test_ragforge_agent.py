@@ -53,12 +53,12 @@ headers = {
 message = "What services does RagForge AI provide?"
 
 payload = {
-    "business_id": "4d249d10-b5d6-4cb6-8401-48206dc57fa1",
+   "business_id": os.getenv("BUSINESS_ID"),
     "message": message,
-    "session_id": "japls1pyhrslgfxe8xocq",
-    "visitor_id": "ec5rbwqx28cn7amf75a6sq",
+    "session_id": os.getenv("SESSION_ID"),
+    "visitor_id": os.getenv("VISITOR_ID"),
     "language": "en",
-    "widget_id": "f2188cd7-6feb-47e6-885f-c9f8969cc3f6",
+    "widget_id": os.getenv("WIDGET_ID"),
 }
 
 response = requests.post(
